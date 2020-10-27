@@ -10,7 +10,7 @@ export default function ProgressGraph({
     radius = 40,
     strokeWidth = 10,
     duration = 500,
-    delay = 1200,
+    delay = 4000,
     textColor,
     max = 100,
 }) {

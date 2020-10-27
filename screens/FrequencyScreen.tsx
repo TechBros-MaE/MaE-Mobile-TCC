@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
@@ -37,7 +37,7 @@ function FrequencyIntermediateScreen({navigation}) {
                       onPress = {() => navigation.push("Detalhes", {name: item.nome, percentage: item.frequencia})}>
                       <ProgressGraph
                         percentage={item.frequencia}
-                        delay={1000}
+                        delay={2000}
                         radius={35}
                         strokeWidth={4}/>
                     </TouchableOpacity>
@@ -64,7 +64,7 @@ function FrequencyFinalScreen({navigation}) {
                       onPress = {() => navigation.push("Detalhes", {name: item.nome, percentage: item.frequencia})}>
                       <ProgressGraph
                         percentage={item.frequencia}
-                        delay={1000}
+                        delay={2000}
                         radius={35}
                         strokeWidth={4}/>
                     </TouchableOpacity>
