@@ -1,73 +1,99 @@
-import { Ionicons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
+import { MaterialCommunityIcons} from '@expo/vector-icons';
 import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
 
-const BottomTab = createBottomTabNavigator<BottomTabParamList>();
+import MentionTopTab from '../screens/MentionScreen';
+import FrequencyTopTab from '../screens/FrequencyScreen';
+
+import { MaterialBottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+
+const BottomTab = createMaterialBottomTabNavigator<MaterialBottomTabParamList>();
 
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
-      <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-        }}
-      />
+      initialRouteName="Mention"
+      barStyle={{
+        backgroundColor: '#FFF',
+        borderTopColor: 'gray',
+        borderTopWidth: 1,
+        elevation: 0,
+      }}
+      activeColor='#D80000'
+      inactiveColor={'gray'}
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === 'Mention') {
+            iconName = 'star';
+          } else if (route.name === 'Frequency'){
+            iconName = 'circle-outline';
+          } else if (route.name === 'Inicio'){
+            iconName = 'home';
+          } else if (route.name === 'Calendário'){
+            iconName = 'calendar-month';
+          } else if (route.name === 'Horários'){
+            iconName = 'clock';
+          }
+          return <TabBarIcon name={iconName} color={color} />;
+        },
+      })}>
+
+      <BottomTab.Screen name="Mention" component={MentionNavigation}/>
+      <BottomTab.Screen name="Frequency" component={FrequencyNavigator}/>
     </BottomTab.Navigator>
   );
 }
 
-// You can explore the built-in icon families and icons on the web at:
-// https://icons.expo.fyi/
 function TabBarIcon(props: { name: string; color: string }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+  return <MaterialCommunityIcons size={25} style={{ marginBottom: -3 }} {...props} />;
 }
 
-// Each tab has its own navigation stack, you can read more about this pattern here:
-// https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const MentionStack = createStackNavigator<TabOneParamList>();
 
-function TabOneNavigator() {
+function MentionNavigation() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+    <MentionStack.Navigator>
+      <MentionStack.Screen
+        name="Menções"
+        component={MentionTopTab}
+        options={headerOptions}
       />
-    </TabOneStack.Navigator>
+    </MentionStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const FrequencyStack = createStackNavigator<TabTwoParamList>();
 
-function TabTwoNavigator() {
+function FrequencyNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+    <FrequencyStack.Navigator>
+      <FrequencyStack.Screen
+        name="Frequências"
+        component={FrequencyTopTab}
+        options={headerOptions}
       />
-    </TabTwoStack.Navigator>
+    </FrequencyStack.Navigator>
   );
+}
+
+const headerOptions = {
+  headerStatusBarHeight: 10,
+  headerTitleAlign: 'center',
+  headerTitleStyle: {
+    textTransform:"uppercase"
+  },
+  headerStyle: {
+    elevation: 0,
+  },
+  headerLeftContainerStyle: {
+    paddingLeft: 20
+  }
 }
