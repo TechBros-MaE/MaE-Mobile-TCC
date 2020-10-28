@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import { state } from '../model/state';
 import ProgressGraph from '../components/ProgressGraph';
-import { Text, View } from '../components/Themed';
+
+import { useTheme } from 'react-native-paper';
 
 const topTab = createMaterialTopTabNavigator();
 
@@ -24,6 +25,9 @@ export default function FrequencyTopTab() {
 }
 
 function FrequencyIntermediateScreen({navigation}) {
+
+  const { colors } = useTheme();
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scroll} >
@@ -41,7 +45,7 @@ function FrequencyIntermediateScreen({navigation}) {
                         radius={35}
                         strokeWidth={4}/>
                     </TouchableOpacity>
-                    <Text style={styles.name}>{item.sigla}</Text>
+                    <Text style={[styles.name, {color: colors.text}]}>{item.sigla}</Text>
                   </View>
               ))}
         </View>
@@ -51,6 +55,9 @@ function FrequencyIntermediateScreen({navigation}) {
 }
 
 function FrequencyFinalScreen({navigation}) {
+
+  const { colors } = useTheme();
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scroll} >
@@ -68,7 +75,7 @@ function FrequencyFinalScreen({navigation}) {
                         radius={35}
                         strokeWidth={4}/>
                     </TouchableOpacity>
-                    <Text style={styles.name}>{item.sigla}</Text>
+                    <Text style={[styles.name, {color: colors.text}]}>{item.sigla}</Text>
                   </View>
               ))}
         </View>

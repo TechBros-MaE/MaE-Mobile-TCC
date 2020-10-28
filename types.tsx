@@ -3,6 +3,10 @@ export type RootStackParamList = {
   NotFound: undefined;
 };
 
+export type ContextParamList = {
+  Context: undefined;
+};
+
 export type MaterialBottomTabParamList = {
   Mention: undefined;
   Frequency: undefined;

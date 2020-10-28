@@ -11,7 +11,11 @@ import {
 import { MaterialCommunityIcons, Ionicons, FontAwesome } from '@expo/vector-icons';
 import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer';
 
+import { AuthContext } from './Context';
+
 export function DrawerContent(props) {
+
+    const { signOut } = useContext(AuthContext)
 
     return(
         <View style={{flex:1}}>
@@ -79,7 +83,7 @@ export function DrawerContent(props) {
                                     />
                                 )}
                                 label="Sair"
-                                onPress={() => {}}
+                                onPress={() => {signOut()}}
                             />
                          </Drawer.Section>
                     </View>

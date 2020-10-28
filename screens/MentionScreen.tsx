@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import { state } from '../model/state';
 import Star from '../components/Stars';
-import { Text, View } from '../components/Themed';
+
+import { useTheme } from 'react-native-paper';
 
 const topTab = createMaterialTopTabNavigator();
 
@@ -24,6 +25,9 @@ export default function MentionTopTab() {
 }
 
 function MentionIntermediateScreen({navigation}) {
+
+  const { colors } = useTheme();
+  
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scroll}>
@@ -35,7 +39,7 @@ function MentionIntermediateScreen({navigation}) {
                   onPress = {() => navigation.push("Detalhes", {name: item.nome})}>
                   <View style = {styles.mention}>
                     <Star value={item.nota[0]} size={25}/>
-                    <Text style = {styles.name}>{item.sigla}</Text>
+                    <Text style = {[styles.name, {color: colors.text}]}>{item.sigla}</Text>
                   </View>
               </TouchableOpacity>
             ))}
@@ -46,6 +50,9 @@ function MentionIntermediateScreen({navigation}) {
 }
 
 function MentionFinalScreen({navigation}) {
+
+  const { colors } = useTheme();
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scroll}>
@@ -57,7 +64,7 @@ function MentionFinalScreen({navigation}) {
                   onPress = {() => navigation.push("Detalhes", {name: item.nome})}>
                   <View style = {styles.mention}>
                     <Star value={item.nota[0]} size={25}/>
-                    <Text style = {styles.name}>{item.sigla}</Text>
+                    <Text style = {[styles.name, {color: colors.text}]}>{item.sigla}</Text>
                   </View>
               </TouchableOpacity>
             ))}

@@ -1,35 +1,37 @@
 import React from 'react'
-import { ScrollView, StyleSheet } from 'react-native';
-
+import { Text, View, ScrollView, StyleSheet } from 'react-native';
+import { useTheme } from 'react-native-paper';
 import { state } from '../model/state';
-import { Text, View } from '../components/Themed';
 
 export default function TimetableScreen({navigation}) {
-    return(
-        <ScrollView style={styles.scroll}>
-            <View style={styles.container}>
-                {state.Timetable.map((item, index) => (
-                <View 
-                    style = {styles.box}
-                    key = {item.id}>
-                    <View style={styles.item}>
-                        <Text style={styles.title}>{item.dia}</Text>
-                    </View>
-                    <View style={styles.item}>
-                        <Text style={styles.subTitle}>Primeiro Horário:</Text>
-                        <Text style={styles.text}>Matéria: {item.aula1}</Text>
-                        <Text style={styles.text}>Professor(a): {item.prof1}</Text>
-                    </View>
-                    <View style={styles.item}>
-                    <Text style={styles.subTitle}>Segundo Horário:</Text>
-                        <Text style={styles.text}>Matéria: {item.aula2}</Text>
-                        <Text style={styles.text}>Professor(a): {item.prof2}</Text>
-                    </View>
+
+  const { colors } = useTheme();
+
+  return(
+    <ScrollView style={styles.scroll}>
+        <View style={styles.container}>
+            {state.Timetable.map((item, index) => (
+              <View 
+                style = {styles.box}
+                key = {item.id}>
+                <View style={styles.item}>
+                  <Text style={[styles.title, {color: colors.text}]}>{item.dia}</Text>
                 </View>
-                ))}
-            </View>
-        </ScrollView>
-    );
+                <View style={styles.item}>
+                  <Text style={[styles.subTitle, {color: colors.text2}]}>Primeiro Horário:</Text>
+                  <Text style={[styles.text, {color: colors.text2}]}>Matéria: {item.aula1}</Text>
+                  <Text style={[styles.text, {color: colors.text2}]}>Professor(a): {item.prof1}</Text>
+                </View>
+                <View style={styles.item}>
+                <Text style={[styles.subTitle, {color: colors.text2}]}>Segundo Horário:</Text>
+                  <Text style={[styles.text, {color: colors.text2}]}>Matéria: {item.aula2}</Text>
+                  <Text style={[styles.text, {color: colors.text2}]}>Professor(a): {item.prof2}</Text>
+                </View>
+              </View>
+            ))}
+        </View>
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({

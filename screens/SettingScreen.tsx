@@ -1,18 +1,25 @@
 import React, { useContext } from 'react'
-import { StyleSheet, ScrollView } from 'react-native';
-import { Switch, TouchableRipple } from 'react-native-paper';
-import { Text, View } from '../components/Themed';
+import { Text, View, StyleSheet, ScrollView } from 'react-native';
+import { useTheme, Switch, TouchableRipple } from 'react-native-paper';
+
+import { AuthContext } from '../components/Context';
 
 export default function SettingScreen() {
+
+    const paperTheme = useTheme();
+    const { colors } = useTheme();
+  
+    const { toggleTheme } = useContext(AuthContext)
+
     return(
         <View style={styles.container}>
             <ScrollView>
-                <Text style={styles.title}>Preferencias</Text>
-                <TouchableRipple onPress={() => {}}>
+                <Text style={[styles.title, {color: colors.text}]}>Preferencias</Text>
+                <TouchableRipple onPress={() => {toggleTheme()}}>
                     <View style={styles.item}>
-                    <Text style={styles.options}>Modo noturno</Text>
+                    <Text style={[styles.options, {color: colors.text}]}>Modo noturno</Text>
                     <View pointerEvents='none'>
-                        <Switch value={() => {}}/>
+                        <Switch value={paperTheme.dark}/>
                     </View>
                     </View>
                 </TouchableRipple>

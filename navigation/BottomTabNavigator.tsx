@@ -3,8 +3,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { createStackNavigator } from '@react-navigation/stack';
 import { MaterialCommunityIcons} from '@expo/vector-icons';
 
-import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
+import { useTheme } from '@react-navigation/native';
 
 import MentionTopTab from '../screens/MentionScreen';
 import FrequencyTopTab from '../screens/FrequencyScreen';
@@ -24,17 +23,18 @@ import {
 const BottomTab = createMaterialBottomTabNavigator<MaterialBottomTabParamList>();
 
 export default function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
+  
+  const { colors } = useTheme()
 
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
       barStyle={{
-        backgroundColor: '#FFF',
+        backgroundColor: colors.card,
         elevation: 0,
       }}
       activeColor='#D80000'
-      inactiveColor={'gray'}
+      inactiveColor={colors.tab}
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color}) => {
           let iconName;

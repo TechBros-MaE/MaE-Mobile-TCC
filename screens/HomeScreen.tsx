@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react'
-import { SafeAreaView, FlatList, Image,  Animated, StyleSheet, Dimensions } from 'react-native';
-import { Text, View } from '../components/Themed';
+import { View, Text, SafeAreaView, FlatList, Image,  Animated, StyleSheet, Dimensions } from 'react-native';
 import { EvilIcons } from '@expo/vector-icons';
 import { FlingGestureHandler, Directions, State } from 'react-native-gesture-handler';
+
+import { useTheme } from '@react-navigation/native';
 
 import { state } from '../model/state';
 
@@ -129,38 +130,40 @@ export default function HomeScreen({navigation}) {
 }
 
 function OverflowItems({data, scrollXAnimated,}) {
-    const inputRange = [-1, 0, 1]
-    const translateY = scrollXAnimated.interpolate({
-        inputRange,
-        outputRange: [OVERFLOW_HEIGHT, 0, -OVERFLOW_HEIGHT]
-    })
+  const inputRange = [-1, 0, 1]
+  const translateY = scrollXAnimated.interpolate({
+      inputRange,
+      outputRange: [OVERFLOW_HEIGHT, 0, -OVERFLOW_HEIGHT]
+  })
 
-    return(
-        <View style={styles.overFlowContainer}>
-            <Animated.View style={{transform: [{translateY}] }}>
-            {data.map((item, index) => {
-                return(
-                <View key = {index} style={styles.itemContainer}>
-                    <Text style={styles.title} numberOfLines={1}>
-                    {item.titulo}
-                    </Text>
-                    <View style={styles.itemContainerRow}>
-                    <Text style={styles.location}>
-                        <EvilIcons 
-                        name='location'
-                        size={16}
-                        color={'#444'}
-                        style={{marginRight: 5}}
-                        />
-                        {item.local}
-                    </Text>
-                    <Text style={styles.data}>{item.data}</Text>
-                    </View>
+  const { colors } = useTheme();
+
+  return(
+    <View style={[styles.overFlowContainer, {backgroundColor: colors.card}]}>
+      <Animated.View style={{transform: [{translateY}] }}>
+        {data.map((item, index) => {
+            return(
+            <View key = {index} style={styles.itemContainer}>
+                <Text style={[styles.title, {color: colors.text}]} numberOfLines={1}>
+                  {item.titulo}
+                </Text>
+                <View style={styles.itemContainerRow}>
+                  <Text style={[styles.location, {color: colors.text}]}>
+                      <EvilIcons 
+                      name='location'
+                      size={16}
+                      color={colors.text}
+                      style={{marginRight: 5}}
+                      />
+                      {item.local}
+                  </Text>
+                <Text style={[styles.data, {color: colors.text}]}>{item.data}</Text>
                 </View>
-                );
-            })}
-            </Animated.View>
-        </View>
+            </View>
+            );
+        })}
+      </Animated.View>
+    </View>
   );
 }
 
