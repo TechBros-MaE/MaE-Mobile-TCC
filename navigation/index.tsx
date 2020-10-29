@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useReducer } from 'react';
-import { ColorSchemeName } from 'react-native';
+import { View, ColorSchemeName } from 'react-native';
 import { 
   NavigationContainer,
   DefaultTheme as NavigationDefaultTheme, 
@@ -12,7 +12,6 @@ import {
 } from 'react-native-paper';
 
 import { DefaultTheme, DarkTheme } from '@react-navigation/native';
-import { View } from '../components/Themed';
 import { ActivityIndicator } from 'react-native-paper';
 import { createStackNavigator } from '@react-navigation/stack';
 
