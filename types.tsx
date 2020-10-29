@@ -17,10 +17,12 @@ export type MaterialBottomTabParamList = {
 
 export type TabOneParamList = {
   Menções: undefined;
+  Detalhes: undefined;
 };
 
 export type TabTwoParamList = {
   Frequências: undefined;
+  Detalhes: undefined;
 };
 
 export type TabThreeParamList = {

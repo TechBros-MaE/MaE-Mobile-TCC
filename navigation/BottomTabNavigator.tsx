@@ -7,6 +7,8 @@ import { useTheme } from '@react-navigation/native';
 
 import MentionTopTab from '../screens/MentionScreen';
 import FrequencyTopTab from '../screens/FrequencyScreen';
+import DetailFrequencyScreen from '../screens/DetailFrequencyScreen';
+import DetailMentionScreen from '../screens/DetailMentionScreen';
 import HomeScreen from '../screens/HomeScreen';
 import CalendarScreen from '../screens/CalendarScreen';
 import TimetableScreen from '../screens/TimetableScreen'
@@ -77,6 +79,12 @@ function MentionNavigation() {
         component={MentionTopTab}
         options={headerOptions}
       />
+      <MentionStack.Screen
+        name="Detalhes"
+        component={DetailMentionScreen}
+        options={({route}) => ({
+          title: route.params.name})}
+          />
     </MentionStack.Navigator>
   );
 }
@@ -91,13 +99,19 @@ function FrequencyNavigator() {
         component={FrequencyTopTab}
         options={headerOptions}
       />
+      <FrequencyStack.Screen
+        name="Detalhes"
+        component={DetailFrequencyScreen}
+        options={({route}) => ({
+          title: route.params.name})}
+        />
     </FrequencyStack.Navigator>
   );
 }
 
 const HomeStack = createStackNavigator<TabThreeParamList>();
 
-function HomeNavigation({navigation}) {
+function HomeNavigation() {
   return(
     <HomeStack.Navigator>
       <HomeStack.Screen 
@@ -110,7 +124,7 @@ function HomeNavigation({navigation}) {
 
 const CalendarStack = createStackNavigator<TabFourParamList>();
 
-function CalendarNavigation({navigation}){
+function CalendarNavigation(){
   return(
     <CalendarStack.Navigator>
       <CalendarStack.Screen 
@@ -123,7 +137,7 @@ function CalendarNavigation({navigation}){
 
 const TimetableStack = createStackNavigator<TabFiveParamList>();
 
-function TimetableNavigation({navigation}){
+function TimetableNavigation(){
   return(
     <TimetableStack.Navigator>
       <TimetableStack.Screen 

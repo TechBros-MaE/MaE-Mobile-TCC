@@ -1,24 +1,23 @@
 import React, { useState } from 'react'
-import { TouchableOpacity, StyleSheet } from 'react-native';
-import { Text, View } from '../components/Themed';
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import { Agenda, LocaleConfig } from 'react-native-calendars';
-import { Avatar, Card } from 'react-native-paper';
+import { Avatar, Card, useTheme } from 'react-native-paper';
 
 export default function CalendarScreen({navigation}){
 
-    //const paperTheme = useTheme();
-    //const { colors } = useTheme();
+    const paperTheme = useTheme();
+    const { colors } = useTheme();
   
     const colorsTheme = {
       agendaTodayColor: '#D80000',
       selectedDayBackgroundColor: '#D80000',
       todayTextColor: '#D80000',
-      monthTextColor: '#333',
-      agendaDayTextColor: '#333',
-      agendaDayNumColor: '#333',
-      dayTextColor: '#333',
-      calendarBackground: '#FFF',
-      backgroundColor: '#F1F2F3',
+      monthTextColor: colors.text,
+      agendaDayTextColor: colors.text,
+      agendaDayNumColor: colors.text,
+      dayTextColor: colors.text,
+      calendarBackground: colors.card,
+      backgroundColor: colors.background,
     }
   
     const [items, setItems] = useState({
@@ -59,10 +58,10 @@ export default function CalendarScreen({navigation}){
     const renderItems = (item) => {
       return(
         <TouchableOpacity style={styles.containerCalendar} onPress={() => {}}>
-          <Card style={{backgroundColor: '#FFF'}}>
+          <Card style={{backgroundColor: colors.card}}>
             <Card.Content>
               <View style={styles.itemCalendar}>
-                <Text style={{color: '#333'}}>{item.name}</Text>
+                <Text style={{color: colors.text}}>{item.name}</Text>
                 <Avatar.Text backgroundColor={'#00B0FF'} label={item.avatar}/>
               </View>
             </Card.Content>
@@ -75,7 +74,7 @@ export default function CalendarScreen({navigation}){
         <View style={styles.container}>
             <Agenda
             items={items}
-            //key={paperTheme.dark == false ? 'light' : 'dark'}
+            key={paperTheme.dark == false ? 'light' : 'dark'}
             loadItemsForMonth={loadItems}
             selected={returnDate()}
             renderItem={renderItems}

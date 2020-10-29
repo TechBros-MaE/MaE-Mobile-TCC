@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import { StyleSheet } from 'react-native';
-import { 
+import { View, StyleSheet } from 'react-native';
+import {
+    useTheme, 
     Avatar,
     Title,
     Caption,
     Drawer,
  } from 'react-native-paper'; 
- import { View } from '../components/Themed';
 
 import { MaterialCommunityIcons, Ionicons, FontAwesome } from '@expo/vector-icons';
 import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer';
@@ -16,6 +16,7 @@ import { AuthContext } from './Context';
 export function DrawerContent(props) {
 
     const { signOut } = useContext(AuthContext)
+    const { colors } = useTheme();
 
     return(
         <View style={{flex:1}}>
@@ -30,7 +31,7 @@ export function DrawerContent(props) {
                             />
                             <View style={{marginLeft: 15, flexDirection:'column'}}>
                                 <Title style={styles.title}>Endrew Cavalcante</Title>
-                                <Caption style={styles.caption}>Aluno</Caption>
+                                <Caption style={[styles.caption, {color: colors.text}]}>Aluno</Caption>
                             </View>
                          </View>
 
@@ -38,7 +39,7 @@ export function DrawerContent(props) {
                              <DrawerItem
                                 icon={() =>(
                                     <MaterialCommunityIcons name='home'
-                                    color={'#A1A1A1'}
+                                    color={colors.text}
                                     size={22}
                                     />
                                 )}
@@ -48,7 +49,7 @@ export function DrawerContent(props) {
                             <DrawerItem
                                 icon={() =>(
                                     <MaterialCommunityIcons name='account'
-                                    color={'#A1A1A1'}
+                                    color={colors.text}
                                     size={22}
                                     />
                                 )}
@@ -58,7 +59,7 @@ export function DrawerContent(props) {
                             <DrawerItem
                                 icon={() =>(
                                     <Ionicons name='md-settings' 
-                                    color={'#A1A1A1'}
+                                    color={colors.text}
                                     size={22}
                                     />
                                 )}
@@ -68,7 +69,7 @@ export function DrawerContent(props) {
                              <DrawerItem
                                 icon={() =>(
                                     <FontAwesome name='question' 
-                                    color={'#A1A1A1'}
+                                    color={colors.text}
                                     size={22}
                                     />
                                 )}
@@ -78,7 +79,7 @@ export function DrawerContent(props) {
                              <DrawerItem
                                 icon={() =>(
                                     <MaterialCommunityIcons name='exit-to-app'
-                                    color={'#A1A1A1'}
+                                    color={colors.text}
                                     size={22}
                                     />
                                 )}
