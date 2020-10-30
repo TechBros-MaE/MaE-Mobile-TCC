@@ -5,6 +5,7 @@ import * as Animatable from 'react-native-animatable';
 
 import Users from '../model/users';
 
+import { useTheme } from 'react-native-paper';
 import { AuthContext } from '../components/Context';
 
 const { height } = Dimensions.get('screen');
@@ -84,10 +85,12 @@ export default function SignInScreen({navigation}){
         signIn(foundUser);
     }
 
+    const { colors } = useTheme();
+
     return(
         <View style={{flex: 1}}>
             <View style={[styles.container,{
-                backgroundColor: '#FFF',
+                backgroundColor: colors.background,
                 }]}>
 
                 <View style={styles.header}>

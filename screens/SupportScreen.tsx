@@ -1,11 +1,14 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Text, View } from '../components/Themed';
+import { Text, View, StyleSheet } from 'react-native';
+import { useTheme } from 'react-native-paper';
 
-export default function SupportScreen() {
+export default function UserScreen() {
+
+    const { colors } = useTheme();
+
     return(
         <View style={styles.container}>
-            <Text>Tela de Suporte</Text>
+            <Text style={{color: colors.text2}}>Tela de Suporte</Text>
         </View>
     );
 }

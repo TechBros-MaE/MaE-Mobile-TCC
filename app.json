@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "ManagementAndEducation",
+    "name": "MaE",
     "slug": "ManagementAndEducation",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -10,7 +10,7 @@
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FFF"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -19,13 +19,14 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.techbros.managementandeducation",
       "supportsTablet": true
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
     "android": {
-      "package": "com.ManagementAndEducation"
+      "package": "com.techbros.managementandeducation"
     }
   }
 }

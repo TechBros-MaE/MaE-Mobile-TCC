@@ -3,56 +3,62 @@ import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from 'rea
 import { MaterialIcons } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 
-const {height} = Dimensions.get('screen');
-const height_logo = height * 0.28;
+import { useTheme } from 'react-native-paper';
+
+const {width, height} = Dimensions.get('screen');
+const width_logo = width * 0.5;
+const height_logo = height * 0.25;
+
 
 export default function SplashScreen({navigation}){
-  
-    return(
-        <View style={[styles.container, {
-            backgroundColor: '#FFF'
-          }]}>
-          <View style={styles.header}>
-            <Animatable.Image
-                animation='pulse'
-                duration={1500}
-              source={require('../assets/images/logo/logo.png')}
-              style={styles.logo}
-              resizeMode='stretch'
-            />
-          </View>
-          <Animatable.View 
-            style={styles.footer}
-            animation='fadeInUpBig'>
-            <Text style={styles.title}>Um novo jeito de administrar o seu conhecimento</Text>
-            <Text style={styles.text}>Entre com sua conta</Text>
-  
-            <View style={styles.button}>
-              <TouchableOpacity 
-                onPress={() => navigation.navigate('SignInScreen')}
-                style={styles.signIn}>
-                  <Text style={styles.textSign}>Aluno</Text>
-                  <MaterialIcons
-                    name='navigate-next'
-                    color='gray'
-                    size={16}
-                  />
-              </TouchableOpacity>
-              <TouchableOpacity 
-                onPress={() => alert('Clicou')}
-                style={styles.signIn}>
-                  <Text style={styles.textSign}>Professor</Text>
-                  <MaterialIcons
-                    name='navigate-next'
-                    color='gray'
-                    size={16}
-                  />
-              </TouchableOpacity>
-            </View>
-            
-          </Animatable.View>
+
+  const { colors } = useTheme();
+
+  return(
+    <View style={[styles.container, {
+        backgroundColor: colors.background
+      }]}>
+      <View style={styles.header}>
+        <Animatable.Image
+            animation='pulse'
+            duration={1500}
+          source={require('../assets/images/logo/logo.png')}
+          style={styles.logo}
+          resizeMode='stretch'
+        />
+      </View>
+      <Animatable.View 
+        style={styles.footer}
+        animation='fadeInUpBig'>
+        <Text style={styles.title}>Um novo jeito de administrar o seu conhecimento</Text>
+        <Text style={styles.text}>Entre com sua conta</Text>
+
+        <View style={styles.button}>
+          <TouchableOpacity 
+            onPress={() => navigation.navigate('SignInScreen')}
+            style={styles.signIn}>
+              <Text style={styles.textSign}>Aluno</Text>
+              <MaterialIcons
+                name='navigate-next'
+                color='gray'
+                size={16}
+              />
+          </TouchableOpacity>
+          <TouchableOpacity 
+            onPress={() => alert('Clicou')}
+            style={styles.signIn}>
+              <Text style={styles.textSign}>Professor</Text>
+              <MaterialIcons
+                name='navigate-next'
+                color='gray'
+                size={16}
+              />
+          </TouchableOpacity>
         </View>
-    )
+        
+      </Animatable.View>
+    </View>
+  )
 }
 
 export const styles = StyleSheet.create({
@@ -74,7 +80,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 30,
     },
     logo: {
-        width: height_logo,
+        width: width_logo,
         height: height_logo,
     },
     title: {

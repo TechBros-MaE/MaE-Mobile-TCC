@@ -38,7 +38,11 @@ function FrequencyIntermediateScreen({navigation}) {
                     key = {item.id}>
                     <TouchableOpacity
                       style = {styles.progress}
-                      onPress = {() => navigation.push("Detalhes", {name: item.nome, percentage: item.frequencia})}>
+                      onPress = {() => navigation.push("Detalhes", 
+                        {
+                          name: item.nome, 
+                          percentage: item.frequencia
+                        })}>
                       <ProgressGraph
                         percentage={item.frequencia}
                         delay={2000}

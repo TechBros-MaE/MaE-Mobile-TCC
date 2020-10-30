@@ -1,11 +1,14 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Text, View } from '../components/Themed';
+import { Text, View, StyleSheet } from 'react-native';
+import { useTheme } from 'react-native-paper';
 
 export default function UserScreen() {
+
+    const { colors } = useTheme();
+
     return(
         <View style={styles.container}>
-            <Text>Tela de Usúário</Text>
+            <Text style={{color: colors.text2}}>Tela de Usúário</Text>
         </View>
     );
 }
