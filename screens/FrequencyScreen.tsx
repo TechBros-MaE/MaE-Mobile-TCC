@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
+import { database } from '../configs/firebase';
 import { state } from '../model/state';
 import ProgressGraph from '../components/ProgressGraph';
 
@@ -25,6 +26,20 @@ export default function FrequencyTopTab() {
 }
 
 function FrequencyIntermediateScreen({navigation}) {
+  const [data, setData] = useState([])
+  const table = 'disciplina';
+  useEffect(() => {
+      database
+      .collection(table)
+      .onSnapshot((query) => {
+          const items = [];
+          query.forEach((doc) => {
+              items.push({...doc.data(), id: doc.id});
+          });
+
+          setData(items);
+      });
+  }, []);
 
   const { colors } = useTheme();
 
@@ -32,26 +47,27 @@ function FrequencyIntermediateScreen({navigation}) {
     <View style={styles.container}>
       <ScrollView style={styles.scroll} >
         <View style={styles.sub_container}>
-            {state.Discipline.map((item, index) => (
-                  <View 
-                    style = {styles.box}
-                    key = {item.id}>
-                    <TouchableOpacity
-                      style = {styles.progress}
-                      onPress = {() => navigation.push("Detalhes", 
-                        {
-                          name: item.nome, 
-                          percentage: item.frequencia
-                        })}>
-                      <ProgressGraph
-                        percentage={item.frequencia}
-                        delay={2000}
-                        radius={35}
-                        strokeWidth={4}/>
-                    </TouchableOpacity>
-                    <Text style={[styles.name, {color: colors.text}]}>{item.sigla}</Text>
-                  </View>
-              ))}
+          {data.map((item, index) => (
+            <View 
+              style = {styles.box}
+              key = {index}>
+              <TouchableOpacity
+                style = {styles.progress}
+                onPress = {() => navigation.push("Detalhes", 
+                  {
+                    name: item.nmDisciplina, 
+                    percentage: item.freqIntermediaria,
+                  })}>
+                <ProgressGraph
+                  percentage={item.freqIntermediaria}
+                  delay={2000}
+                  radius={35}
+                  strokeWidth={4}
+                />
+              </TouchableOpacity>
+              <Text style={[styles.name, {color: colors.text}]}>{item.siglaDisciplina}</Text>
+            </View>
+            ))}
         </View>
       </ScrollView>
     </View>
