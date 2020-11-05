@@ -27,7 +27,7 @@ export default function FrequencyTopTab() {
 
 function FrequencyIntermediateScreen({navigation}) {
   const [data, setData] = useState([])
-  const table = 'disciplina';
+  const table = 'frequencia';
   useEffect(() => {
       database
       .collection(table)
@@ -55,17 +55,18 @@ function FrequencyIntermediateScreen({navigation}) {
                 style = {styles.progress}
                 onPress = {() => navigation.push("Detalhes", 
                   {
-                    name: item.nmDisciplina, 
-                    percentage: item.freqIntermediaria,
-                  })}>
+                    name: item.frequencia.nome, 
+                    percentage: item.intermediaria,
+                    call: item.chamada
+              })}>
                 <ProgressGraph
-                  percentage={item.freqIntermediaria}
+                  percentage={item.intermediaria}
                   delay={2000}
                   radius={35}
                   strokeWidth={4}
                 />
               </TouchableOpacity>
-              <Text style={[styles.name, {color: colors.text}]}>{item.siglaDisciplina}</Text>
+              <Text style={[styles.name, {color: colors.text}]}>{item.frequencia.sigla}</Text>
             </View>
             ))}
         </View>

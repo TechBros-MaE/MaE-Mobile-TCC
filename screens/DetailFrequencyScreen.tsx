@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import ProgressGraph from '../components/ProgressGraph';
 import { ListItem } from 'react-native-elements';
 
+import * as firebase from 'firebase';
 import { database } from '../configs/firebase';
 
 import { useTheme } from '@react-navigation/native';
@@ -24,17 +25,27 @@ export default function DetailFrequencyScreen({route}){
       });
   }, []);
 
-  const renderItem = ({item, index}) => {
+  const renderItem = () => {
+
+    const getDate = new Date(firebase.firestore.Timestamp.now().seconds*1000).toLocaleDateString("pt-br")
+    
+    const toDate = (date) => {
+      const [day, month, year] = date.split("/");
+      return String(day) + "/" + (String(month - 1).length == 2 ? String(month - 1) : "0"+String(month - 1))  + "/" + String(year)
+    }
+    
+    const date = toDate(getDate)
+    console.log(route.params.call.data)
 
     return(
-        <ListItem key={index} bottomDivider>
+        <ListItem  bottomDivider>
           <ListItem.Content>
             <View style={styles.list_container}>
-              <ListItem.Title style={styles.list_text}>Data: {item.chamAula.dia[0]}</ListItem.Title>
-              <ListItem.Title>Situação: {item.chamAula.dia[2] ? 'Presente' : 'Ausente'}</ListItem.Title>
+              <ListItem.Title style={styles.list_text}>Data: {date}</ListItem.Title>
+              <ListItem.Title>Situação: {route.params.call.presente ? 'Presente' : 'Ausente'}</ListItem.Title>
             </View>
             <View style={styles.list_container}>
-              <ListItem.Subtitle>Hora: {item.chamAula.dia[1]}</ListItem.Subtitle>
+              <ListItem.Subtitle>Hora: {}</ListItem.Subtitle>
             </View>
           </ListItem.Content>
         </ListItem>
