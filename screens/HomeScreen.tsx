@@ -2,11 +2,13 @@ import React, { useRef, useState, useEffect, useCallback } from 'react'
 import { View, Text, SafeAreaView, FlatList, Image,  Animated, StyleSheet, Dimensions } from 'react-native';
 import { EvilIcons } from '@expo/vector-icons';
 import { FlingGestureHandler, Directions, State } from 'react-native-gesture-handler';
+
+
 import { database } from '../configs/firebase';
 
 import { useTheme } from '@react-navigation/native';
 
-const { width, height } = Dimensions.get('screen');
+const { width } = Dimensions.get('screen');
 const SPACING = 10;
 const ITEM_WIDTH = width * 0.9;
 const ITEM_HEIGHT = ITEM_WIDTH;
@@ -16,6 +18,7 @@ const VISIBLE_ITEMS = 3;
 
 export default function HomeScreen() {
     const [data, setData] = useState([])
+
     const scrollXIndex = useRef(new Animated.Value(0)).current;
     const scrollXAnimated = useRef(new Animated.Value(0)).current;
     const [index, setIndex] = useState(0);

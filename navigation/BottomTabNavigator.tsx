@@ -11,7 +11,9 @@ import DetailFrequencyScreen from '../screens/DetailFrequencyScreen';
 import DetailMentionScreen from '../screens/DetailMentionScreen';
 import HomeScreen from '../screens/HomeScreen';
 import CalendarScreen from '../screens/CalendarScreen';
-import TimetableScreen from '../screens/TimetableScreen'
+import TimetableScreen from '../screens/TimetableScreen';
+
+import Teste from '../screens/Teste';
 
 import { 
   MaterialBottomTabParamList, 
@@ -116,7 +118,7 @@ function HomeNavigation() {
     <HomeStack.Navigator>
       <HomeStack.Screen 
         name="Início" 
-        component={HomeScreen}
+        component={Teste}
         options={headerHome}/>
     </HomeStack.Navigator>
   );
