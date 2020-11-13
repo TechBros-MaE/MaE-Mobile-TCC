@@ -53,9 +53,9 @@ function FrequencyIntermediateScreen({navigation}) {
               key = {index}>
               <TouchableOpacity
                 style = {styles.progress}
-                onPress = {() => navigation.push("Detalhes", 
+                onPress = {() => navigation.push("Detalhes",
                   {
-                    name: item.frequencia.nome, 
+                    name: item.frequencia.nome,
                     percentage: item.intermediaria,
                     call: item.chamada
               })}>

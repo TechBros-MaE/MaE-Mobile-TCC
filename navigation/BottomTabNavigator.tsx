@@ -118,7 +118,7 @@ function HomeNavigation() {
     <HomeStack.Navigator>
       <HomeStack.Screen 
         name="Início" 
-        component={Teste}
+        component={HomeScreen}
         options={headerHome}/>
     </HomeStack.Navigator>
   );

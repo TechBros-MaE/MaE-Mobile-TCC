@@ -13,7 +13,7 @@ export default function Teste(){
         const response = await fetch('http://192.168.42.247:1384/eventos');
         const eventos = await response.json();
         setData(eventos);
-        console.log(eventos)
+        console.log(eventos);
     }
 
     return(

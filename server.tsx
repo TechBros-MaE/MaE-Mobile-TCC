@@ -12,7 +12,7 @@ var con = mysql.createConnection({
     port:'3306',
     user:'root',
     password:'',
-    database:'bd_tcc'
+    database:'bd_mae'
 });
 
 var server = app.listen(1384, function() {
